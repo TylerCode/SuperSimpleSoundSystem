@@ -1,0 +1,32 @@
+# S<sup>4</sup> Super Simple Sound System
+`v4.1.0`
+
+So S<sup>4</sup> is as the name implies, a super simple way to go about adding sounds to your game. With many options (most of them optional) you can have some control but when playing a sound is a simple as `_soundSource.PlaySound("Sparks");` you know it's going to be a good time. The system is not super robust, it does extend unity's sound system but not in any major ways. It only adds common functionality such as crossfade, global sounds, sound positioning, etc. It's meant to be simple to get a game's sound up and running. 
+
+
+## Setup
+
+Setup is fairly easy, there is a prefab for `S4SoundManager` that just needs to be added to your scenes. This is a global object and can really just be added to your first scene if you don't want to add it to them all. Just whatever works best for your project. It helps keep track of what sounds are playing, what sounds need to play and also takes care of spawning the new sounds. 
+
+Next up, any object in the scene that needs to make sounds just needs to have an `S4SoundSource` added to them. This is where the sound configurations will be made and it's all done within the unity UI. These are all well documented within the tooltips but you just add your sounds to this object.
+
+These sounds can be triggered like so: 
+
+```csharp
+private S4SoundSource _soundSource;
+
+private void Start()
+{
+    _soundSource = GetComponent<S4SoundSource>();
+}
+
+private void SomeMethodYouHave()
+{
+    ...
+    _soundSource.PlaySound("SoundName");
+    ...
+}
+```
+
+It's that easy. All the options are documented in the tooltips and this documentation will expand as the tool matures. 
+
