@@ -1,16 +1,14 @@
 Credits for sample assets:
 
-Sparks Sound:
-ERH - https://freesound.org/people/ERH/sounds/31348/
+"Sci-Fi Survival Dreamscape" by onederwish
+https://freesound.org/people/onderwish/sounds/468407/
 
-Sythwave Loop:
-XHALE303 - https://freesound.org/people/XHALE303/sounds/473915/
+"Space Organ Ambient Music" by unfa
+https://freesound.org/people/unfa/sounds/209315/
+
+"Tiny Mortar" by j1987
+https://freesound.org/people/j1987/sounds/140727/
 
 
-All sound and music licensed under Creative Commons (CC BY 3.0):
-https://creativecommons.org/licenses/by/3.0/
-
-Some music not listed here were licensed under Creative Commons (CC0):
-https://creativecommons.org/share-your-work/public-domain/cc0/
-
-I would still list them but the music in question was made by a user that was removed from freesound.org. If I find them I will credit them in this document. 
+All sound and music is in the public domain under Creative Commons 0 (CC0 1.0):
+https://creativecommons.org/publicdomain/zero/1.0/
