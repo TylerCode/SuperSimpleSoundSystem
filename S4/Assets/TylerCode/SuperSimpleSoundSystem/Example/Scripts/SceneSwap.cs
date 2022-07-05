@@ -1,23 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneSwap : MonoBehaviour
+namespace TylerCode.Examples
 {
-    private void Update()
+    public class SceneSwap : MonoBehaviour
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        private void Update()
         {
-            switch(SceneManager.GetActiveScene().buildIndex)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                case 0:
-                    SceneManager.LoadScene(1);
-                    break;
+                switch (SceneManager.GetActiveScene().buildIndex)
+                {
+                    case 0:
+                        SceneManager.LoadScene(1);
+                        break;
 
-                case 1:
-                    SceneManager.LoadScene(0);
-                    break;
+                    case 1:
+                        SceneManager.LoadScene(0);
+                        break;
+                }
             }
         }
     }

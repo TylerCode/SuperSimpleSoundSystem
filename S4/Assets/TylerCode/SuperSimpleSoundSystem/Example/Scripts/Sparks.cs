@@ -1,23 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using TylerCode.SoundSystem;
 
-public class Sparks : MonoBehaviour
+namespace TylerCode.Examples
 {
-    [SerializeField]
-    private float _repeatDuration;
-    private S4SoundSource _soundSource;
-
-    void Start()
+    public class Sparks : MonoBehaviour
     {
-        _soundSource = GetComponent<S4SoundSource>();
-        Invoke("PlaySound", 0);
-    }
+        [SerializeField]
+        private float _repeatDuration;
+        private S4SoundSource _soundSource;
 
-    private void PlaySound()
-    {
-        Invoke("PlaySound", _repeatDuration);
+        void Start()
+        {
+            _soundSource = GetComponent<S4SoundSource>();
+            Invoke("PlaySound", 0);
+        }
 
-        _soundSource.PlaySound("Sparks");
+        private void PlaySound()
+        {
+            Invoke("PlaySound", _repeatDuration);
+
+            _soundSource.PlaySound("Sparks");
+        }
     }
 }
