@@ -3,55 +3,59 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-/// <summary>
-/// This is the actual "Play a sound" class, add this to a game object and off you go.
-/// </summary>
-public class S4SoundSource : MonoBehaviour
+
+namespace TylerCode.SoundSystem
 {
-    [SerializeField]
-    [Tooltip("Sound to play when object is created, can be empty for none.")]
-    private string _soundToPlayOnAwake;
-    [SerializeField]
-    [Tooltip("List of sounds attached to this object, used to communicate with the sound manager")]
-    private List<SoundPlayerSettings> _sounds;
-
-    private S4SoundManager _soundManager;
-
-    private void Start()
-    {
-        _soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<S4SoundManager>();
-
-        if(string.IsNullOrEmpty(_soundToPlayOnAwake) == false)
-        {
-            PlaySound(_soundToPlayOnAwake);
-        }
-    }
-
     /// <summary>
-    /// Plays a sound by its name and takes in an optional position override. This plays a sound player config by its name.
+    /// This is the actual "Play a sound" class, add this to a game object and off you go.
     /// </summary>
-    /// <param name="name">Name of the sound to play</param>
-    /// <param name="overridePosition">Positional override (optional)</param>
-    public void PlaySound(string name, Vector3? overridePosition = null)
+    public class S4SoundSource : MonoBehaviour
     {
-        SoundPlayerSettings _soundPlayerSettings = _sounds.FirstOrDefault(sp => sp.soundName == name);
+        [SerializeField]
+        [Tooltip("Sound to play when object is created, can be empty for none.")]
+        private string _soundToPlayOnAwake;
+        [SerializeField]
+        [Tooltip("List of sounds attached to this object, used to communicate with the sound manager")]
+        private List<SoundPlayerSettings> _sounds;
 
-        if(overridePosition != null)
+        private S4SoundManager _soundManager;
+
+        private void Start()
         {
-            _soundPlayerSettings.positionToPlay = overridePosition.Value;
+            _soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<S4SoundManager>();
+
+            if (string.IsNullOrEmpty(_soundToPlayOnAwake) == false)
+            {
+                PlaySound(_soundToPlayOnAwake);
+            }
         }
 
-        if(_soundPlayerSettings == null)
+        /// <summary>
+        /// Plays a sound by its name and takes in an optional position override. This plays a sound player config by its name.
+        /// </summary>
+        /// <param name="name">Name of the sound to play</param>
+        /// <param name="overridePosition">Positional override (optional)</param>
+        public void PlaySound(string name, Vector3? overridePosition = null)
         {
-            Debug.LogError("The sound " + name + " does not exist on this SoundSource!");
-            return;
+            SoundPlayerSettings _soundPlayerSettings = _sounds.FirstOrDefault(sp => sp.soundName == name);
+
+            if (overridePosition != null)
+            {
+                _soundPlayerSettings.positionToPlay = overridePosition.Value;
+            }
+
+            if (_soundPlayerSettings == null)
+            {
+                Debug.LogError("The sound " + name + " does not exist on this SoundSource!");
+                return;
+            }
+
+            _soundManager.PlaySound(_soundPlayerSettings);
         }
 
-        _soundManager.PlaySound(_soundPlayerSettings);
-    }
-
-    public void StopSound()
-    {
-        //TODO: Stopping sounds
+        public void StopSound()
+        {
+            //TODO: Stopping sounds
+        }
     }
 }
