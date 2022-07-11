@@ -8,9 +8,9 @@ There is also a subtitle/closed captioning engine in here. That bit hasn't had a
 
 ## Setup
 
-Setup is fairly easy, there is a prefab for `S4SoundManager` that just needs to be added to your scenes. This is a global object and can really just be added to your first scene if you don't want to add it to them all. If you want subtitles or closed captions you can drag subs in with it. Just whatever works best for your project. Sound Manager helps keep track of what sounds are playing, what sounds need to play and also takes care of spawning the new sounds. 
+Setup is fairly easy, there is a prefab for `S4SoundManager` that just needs to be added to your scenes. This is a global object and can really just be added to your first scene if you don't want to add it to them all. If you want subtitles or closed captions you can drag the "Subs" into your canvas. Just whatever works best for your project. Sound Manager helps keep track of what sounds are playing, what sounds need to play and also takes care of spawning the new sounds. 
 
-Next up, any object in the scene that needs to make sounds just needs to have an `S4SoundSource` added to them. This is where the sound configurations will be made and it's all done within the unity UI. These are all well documented within the tooltips but you just add your sounds to this object.
+Next up, any objects in the scene with sounds to play has to have an `S4SoundSource` added to them. This is where the sound configurations will be made and it's all done within the unity UI. These are all well documented within the tooltips but you just add your sounds to this object.
 
 These sounds can be triggered like so: 
 
