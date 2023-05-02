@@ -1,5 +1,5 @@
 # S<sup>4</sup> Super Simple Sound System
-`v5.0.0`
+`v5.1.0`
 
 So S<sup>4</sup> is as the name implies, a super simple way to go about adding sounds to your game. You can still have some control but when playing a sound, but it can be as simple as `_soundSource.PlaySound("Sparks");`. The system is not super robust, it does extend unity's sound system but not in any major ways. It only adds common functionality such as crossfade, global sounds, sound positioning, etc. It's meant to be simple to get a game's sound up and running. Perfect for game Jams and smaller games. 
 
