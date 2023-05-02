@@ -8,25 +8,28 @@ namespace TylerCode.SoundSystem
 {
     public class S4SoundManager : MonoBehaviour
     {
+        public event EventHandler<SubtitleEventArgs> OnSubtitlePlay;
+
         //Overrides for volume, these are GLOBAL. Use the sound source volume to tweak specific instances
         [Tooltip("The GLOBAL music volume, wire up to your settings menu")]
         public float musicVolume = 1.0f;
         [Tooltip("The GLOBAL sound volume, wire up to your settings menu")]
         public float soundVolume = 1.0f;
+        [Tooltip("The GLOBAL setting for subtitles")]
+        public bool subtitlesEnabled = true;
+        //[Tooltip("The GLOBAL setting for closed captions, does not automatically turn on subtitles.")]
+        //public bool closedCaptionsEnabled = true;
         [SerializeField]
         [Tooltip("Turns on additional logging throughout the application")]
         private bool _debugMode = false;
 
-        private S4Subtitles _subtitleEngine;
         private Dictionary<int, SoundObject> _sounds = new Dictionary<int, SoundObject>();
         private List<string> _globalSounds = new List<string>();
-        private Action<string> _subtitleAction;
         private int _currentSong = 0;
 
         private void Awake()
         {
             GameObject[] managers = GameObject.FindGameObjectsWithTag("SoundManager");
-            _subtitleEngine = FindObjectOfType<S4Subtitles>();
 
             if (managers.Length > 1)
             {
@@ -34,16 +37,6 @@ namespace TylerCode.SoundSystem
             }
 
             DontDestroyOnLoad(this.gameObject);
-        }
-
-        public void InitializeSubtitles(Action<string> subtitleAction)
-        {
-            _subtitleAction = subtitleAction;
-        }
-
-        private void OnLevelWasLoaded(int level)
-        {
-            _subtitleEngine = FindObjectOfType<S4Subtitles>();
         }
 
         public int PlaySound(SoundPlayerSettings playerSettings)
@@ -86,19 +79,13 @@ namespace TylerCode.SoundSystem
                 _globalSounds.Add(playerSettings.soundName);
             }
 
-            //Subtitle/Closed Caption call. Comment exists for searchability
-            //So you can attach your own closed caption system to S4, or use the built-in one. I'd 
-            //recommend built-in unless you are doing something weird with your subs. 
-            if (_subtitleAction != null)
+            //Handle Subtitles
+            if (subtitlesEnabled)
             {
-                _subtitleAction(playerSettings.closedCaption); // Calls out to a subtitle system to display captions
-            }
-            else
-            {
-                if (_subtitleEngine != null)
-                    _subtitleEngine.DisplaySub(playerSettings.closedCaption);
+                OnSubtitlePlay?.Invoke(this, new SubtitleEventArgs(new SubtitleData("", playerSettings.closedCaption, false)));
             }
 
+            //Handle Music
             if (playerSettings.isMusic)
             {
                 StartNewSong(playerSettings, playId);
@@ -218,4 +205,27 @@ namespace TylerCode.SoundSystem
         }
     }
 
+    public class SubtitleEventArgs : EventArgs
+    {
+        public SubtitleData SubtitleData { get; set; }
+
+        public SubtitleEventArgs(SubtitleData subtitleData)
+        {
+            SubtitleData = subtitleData;
+        }
+    }
+
+    public class SubtitleData
+    {
+        public string Speaker;
+        public string Subtitle;
+        public bool IsDialog;
+
+        public SubtitleData(string speaker, string subtitle, bool isDialog)
+        {
+            Speaker = speaker;
+            Subtitle = subtitle;
+            IsDialog = isDialog;
+        }
+    }
 }
