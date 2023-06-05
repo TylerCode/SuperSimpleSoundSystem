@@ -7,7 +7,10 @@ There is also a subtitle/closed captioning engine in here. That bit hasn't had a
 
 ## Note on 6.0.0
 
-This is a major overhaul to the project that I've been working on since the St. Jude Play Live streams in May 2023. This version will not be compatible with 5.x releases and I recommend waiting for 6.0 for new projects if possible because it will be a lot easier to use and a lot better. Will probably be out towards the end of the month, just a balance of adding cool features but also keeping it true to the name. 
+This is a major overhaul to the project that I've been working on since the St. Jude Play Live streams in May 2023. This version will not be compatible with 5.x releases and I recommend waiting for 6.0 for new projects if possible because it will be a lot easier to use and a lot better. Will probably be out towards the end of the month, just a balance of adding cool features but also keeping it true to the name. Here is an ugly WIP:
+
+![image](https://github.com/TylerCode/SuperSimpleSoundSystem/assets/18288340/b747d61d-61c7-4242-926b-18df99b14f0e)
+
 
 
 
