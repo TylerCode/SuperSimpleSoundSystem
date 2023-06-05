@@ -1,7 +1,7 @@
 # S<sup>4</sup> Super Simple Sound System
 `v6.0.0-indev`
 
-So S<sup>4</sup> is as the name implies, a super simple way to go about adding sounds to your game. You can still have some control but when playing a sound, but it can be as simple as `_soundSource.PlaySound("Sparks");`. The system is not super robust, it does extend unity's sound system but not in any major ways. It only adds common functionality such as crossfade, global sounds, sound positioning, etc. It's meant to be simple to get a game's sound up and running. Perfect for game Jams and smaller games. 
+So S<sup>4</sup> is as the name implies, a super simple way to go about adding sounds to your game. You can still have some control when playing a sound, but it can also be as simple as `_soundSource.PlaySound("Sparks");`. The system is not super robust, it does extend unity's sound system but not in any major ways. It only adds common functionality such as crossfade, global sounds, sound positioning, etc. It's meant to be simple to get a game's sound up and running. Perfect for game Jams and smaller games. 
 
 There is also a subtitle/closed captioning engine in here. That bit hasn't had a lot of work done on it and honestly I'd have loved to do a larger update before doing the public release but a work project needs this tool and doing a public release makes it easier to license it for that. 
 
