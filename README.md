@@ -10,7 +10,7 @@ There is also a subtitle/closed captioning engine in here. That bit hasn't had a
 This is a major overhaul to the project that I've been working on since the St. Jude Play Live streams in May 2023. This version will not be compatible with 5.x releases and I recommend waiting for 6.0 for new projects if possible because it will be a lot better.
 
 
-## Setup
+## Setup (5.x)
 
 Setup is fairly easy, there is a prefab for `S4SoundManager` that just needs to be added to your scenes. This is a global object and can really just be added to your first scene if you don't want to add it to them all. If you want subtitles or closed captions you can drag the "Subs" into your canvas. Just whatever works best for your project. Sound Manager helps keep track of what sounds are playing, what sounds need to play and also takes care of spawning the new sounds. 
 
