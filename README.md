@@ -12,6 +12,9 @@ Setup is fairly easy, there is a prefab for `S4SoundManager` that just needs to 
 
 Next up, any objects in the scene with sounds to play has to have an `S4SoundSource` added to them. This is where the sound configurations will be made and it's all done within the unity UI. These are all well documented within the tooltips but you just add your sounds to this object.
 
+![image](https://github.com/TylerCode/SuperSimpleSoundSystem/assets/18288340/437c097d-8aec-4b4f-8e5e-8776198a1ab9)
+
+
 These sounds can be triggered like so: 
 
 ```csharp
