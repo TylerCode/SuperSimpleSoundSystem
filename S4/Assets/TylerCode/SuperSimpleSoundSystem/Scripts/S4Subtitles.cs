@@ -95,28 +95,6 @@ namespace TylerCode.SoundSystem
             Invoke("StopShowingText", subtitleTiming);
         }
 
-        //IEnumerator FadeOutText()
-        //{
-        //    Color c = _messageText.color;
-        //    for (float alpha = 1f; alpha >= 0; alpha -= (_fadeSpeed * Time.deltaTime))
-        //    {
-        //        c.a = alpha;
-        //        _messageText.color = c;
-        //        yield return null;
-        //    }
-        //}
-
-        //IEnumerator FadeInText()
-        //{
-        //    Color c = _messageText.color;
-        //    for (float alpha = 0f; alpha <= 1; alpha += (_fadeSpeed * Time.deltaTime))
-        //    {
-        //        c.a = alpha;
-        //        _messageText.color = c;
-        //        yield return null;
-        //    }
-        //}
-
         private void StopShowingText()
         {
             _subtitleParent.gameObject.SetActive(false);

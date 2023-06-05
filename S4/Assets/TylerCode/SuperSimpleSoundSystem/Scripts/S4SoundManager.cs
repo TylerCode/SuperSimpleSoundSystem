@@ -9,18 +9,23 @@ namespace TylerCode.SoundSystem
     public class S4SoundManager : MonoBehaviour
     {
         public event EventHandler<SubtitleEventArgs> OnSubtitlePlay;
+        public event EventHandler<VolumeData> OnVolumeChange;
 
         //Overrides for volume, these are GLOBAL. Use the sound source volume to tweak specific instances
         [Tooltip("The GLOBAL music volume, wire up to your settings menu")]
-        public float musicVolume = 1.0f;
-        [Tooltip("The GLOBAL sound volume, wire up to your settings menu")]
-        public float soundVolume = 1.0f;
-        [Tooltip("The GLOBAL setting for subtitles")]
-        public bool subtitlesEnabled = true;
-        //[Tooltip("The GLOBAL setting for closed captions, does not automatically turn on subtitles.")]
-        //public bool closedCaptionsEnabled = true;
         [SerializeField]
+        private float musicVolume = 1.0f;
+        [Tooltip("The GLOBAL sound volume, wire up to your settings menu")]
+        [SerializeField]
+        private float soundVolume = 1.0f;
+        [Tooltip("The GLOBAL setting for subtitles")]
+        [SerializeField]
+        private bool subtitlesEnabled = true;
+        [Tooltip("The GLOBAL setting for closed captions, does not automatically turn on subtitles.")]
+        [SerializeField]
+        private bool closedCaptionsEnabled = true;
         [Tooltip("Turns on additional logging throughout the application")]
+        [SerializeField]
         private bool _debugMode = false;
 
         private Dictionary<int, SoundObject> _sounds = new Dictionary<int, SoundObject>();
@@ -169,11 +174,7 @@ namespace TylerCode.SoundSystem
         }
     }
 
-    /// <summary>
-    /// This keeps track of our game objects out in the world. Lets us see how long they have been playing etc.
-    /// 
-    /// It was done this way so we can just keep the gameobjects referenced for easy destruction on level loading should we need it.
-    /// </summary>
+
     public class SoundObject
     {
         public SoundPlayerSettings playerSettings;
@@ -215,11 +216,29 @@ namespace TylerCode.SoundSystem
         }
     }
 
+    public class VolumeEventArgs : EventArgs
+    {
+        public VolumeData VolumeData { get; set; }
+
+        public VolumeEventArgs(VolumeData volumeData)
+        {
+            VolumeData = volumeData;
+        }
+    }
+
+    public class VolumeData
+    {
+        public float MusicVolume { get; set; }
+        public float SoundVolume { get; set; }
+    }
+
     public class SubtitleData
     {
         public string Speaker;
         public string Subtitle;
         public bool IsDialog;
+        public bool SubsEnabled;
+        public bool CaptionsEnabled;
 
         public SubtitleData(string speaker, string subtitle, bool isDialog)
         {

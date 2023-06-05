@@ -148,7 +148,9 @@ namespace TylerCode.SoundSystem
     public class SoundPlayerSettings
     {
         public string soundName;
-        public string closedCaption;
+        public string speaker;
+        public string captiontext; //For subs or captions
+        public bool persistSceneChange; //Calls DontDestroyOnLoad on the object and persists between scenes
         public AudioClip audioClip;
         public Vector3 positionToPlay;
         public Transform parentObject;
@@ -156,27 +158,29 @@ namespace TylerCode.SoundSystem
         public SoundPlayerSettings nextSound;
         public float volume;
         public bool randomPitch = false;
+        [Tooltip("If random pitch is false, the min pitch will be used")]
         public float minPitch = 1;
         public float maxPitch = 1;
         public bool isMusic;
-        public bool persistSceneChange; //Calls DontDestroyOnLoad on the object and persists between scenes
         public bool globalSound; //Used when the sound is played at the same position as the listener
 
-        public SoundPlayerSettings(string name, string caption, AudioClip clip, Vector3 position, float vol, bool loop = false, Transform parent = null, SoundPlayerSettings next = null, bool persist = false, bool music = false, float pitchMin = 1, float pitchMax = 1, bool randomizePitch = false)
+        public SoundPlayerSettings(string soundName, string speaker, string captiontext, bool persistSceneChange, AudioClip audioClip, Vector3 positionToPlay, Transform parentObject, bool looping, SoundPlayerSettings nextSound, float volume, bool randomPitch, float minPitch, float maxPitch, bool isMusic, bool globalSound)
         {
-            soundName = name;
-            closedCaption = caption;
-            audioClip = clip;
-            positionToPlay = position;
-            parentObject = parent;
-            looping = loop;
-            nextSound = next;
-            minPitch = pitchMin;
-            maxPitch = pitchMax;
-            randomPitch = randomizePitch;
-            volume = vol;
-            isMusic = music;
-            persistSceneChange = persist;
+            this.soundName = soundName;
+            this.speaker = speaker;
+            this.captiontext = captiontext;
+            this.persistSceneChange = persistSceneChange;
+            this.audioClip = audioClip;
+            this.positionToPlay = positionToPlay;
+            this.parentObject = parentObject;
+            this.looping = looping;
+            this.nextSound = nextSound;
+            this.volume = volume;
+            this.randomPitch = randomPitch;
+            this.minPitch = minPitch;
+            this.maxPitch = maxPitch;
+            this.isMusic = isMusic;
+            this.globalSound = globalSound;
         }
     }
 }
