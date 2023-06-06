@@ -11,7 +11,7 @@ namespace TylerCode.SoundSystem
     public class S4SoundPlayer : MonoBehaviour
     {
         [SerializeField]
-        private SoundPlayerSettings _soundPlayerSettings;
+        private S4SoundPlayerSettings _soundPlayerSettings;
         [SerializeField]
         private int _playerID = 0;
 
@@ -25,7 +25,7 @@ namespace TylerCode.SoundSystem
         /// <param name="id">The ID assigned to this sound from the S4 manager.</param>
         /// <param name="manager">The S4 Sound Manager controlling the operation.</param>
         /// <param name="fadeIn">Should this sound have a 3 second fade-in? (Optional)</param>
-        public void StartPlayer(SoundPlayerSettings player, int id, S4SoundManager manager, bool fadeIn = false)
+        public void StartPlayer(S4SoundPlayerSettings player, int id, S4SoundManager manager, bool fadeIn = false)
         {
             _soundPlayerSettings = player;
             float desiredVolume = 1;
@@ -42,11 +42,11 @@ namespace TylerCode.SoundSystem
 
             if (player.isMusic)
             {
-                desiredVolume = _soundPlayerSettings.volume * manager.musicVolume;
+                desiredVolume = _soundPlayerSettings.volume * 1; //manager.musicVolume;
             }
             else
             {
-                desiredVolume = _soundPlayerSettings.volume * manager.soundVolume;
+                desiredVolume = _soundPlayerSettings.volume * 1;// manager.soundVolume;
             }
 
             AudioSource audioSource = this.gameObject.AddComponent<AudioSource>();
@@ -141,46 +141,6 @@ namespace TylerCode.SoundSystem
 
             audioSource.Stop();
             Destroy(this.gameObject);
-        }
-    }
-
-    [System.Serializable]
-    public class SoundPlayerSettings
-    {
-        public string soundName;
-        public string speaker;
-        public string captiontext; //For subs or captions
-        public bool persistSceneChange; //Calls DontDestroyOnLoad on the object and persists between scenes
-        public AudioClip audioClip;
-        public Vector3 positionToPlay;
-        public Transform parentObject;
-        public bool looping;
-        public SoundPlayerSettings nextSound;
-        public float volume;
-        public bool randomPitch = false;
-        [Tooltip("If random pitch is false, the min pitch will be used")]
-        public float minPitch = 1;
-        public float maxPitch = 1;
-        public bool isMusic;
-        public bool globalSound; //Used when the sound is played at the same position as the listener
-
-        public SoundPlayerSettings(string soundName, string speaker, string captiontext, bool persistSceneChange, AudioClip audioClip, Vector3 positionToPlay, Transform parentObject, bool looping, SoundPlayerSettings nextSound, float volume, bool randomPitch, float minPitch, float maxPitch, bool isMusic, bool globalSound)
-        {
-            this.soundName = soundName;
-            this.speaker = speaker;
-            this.captiontext = captiontext;
-            this.persistSceneChange = persistSceneChange;
-            this.audioClip = audioClip;
-            this.positionToPlay = positionToPlay;
-            this.parentObject = parentObject;
-            this.looping = looping;
-            this.nextSound = nextSound;
-            this.volume = volume;
-            this.randomPitch = randomPitch;
-            this.minPitch = minPitch;
-            this.maxPitch = maxPitch;
-            this.isMusic = isMusic;
-            this.globalSound = globalSound;
         }
     }
 }

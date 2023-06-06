@@ -31,6 +31,7 @@ namespace TylerCode.SoundSystem
         private Dictionary<int, SoundObject> _sounds = new Dictionary<int, SoundObject>();
         private List<string> _globalSounds = new List<string>();
         private int _currentSong = 0;
+        public S4SoundPlayerSettings[] sounds;
 
         private void Awake()
         {
@@ -44,7 +45,7 @@ namespace TylerCode.SoundSystem
             DontDestroyOnLoad(this.gameObject);
         }
 
-        public int PlaySound(SoundPlayerSettings playerSettings)
+        public int PlaySound(S4SoundPlayerSettings playerSettings)
         {
             int playId = UnityEngine.Random.Range(10000, 99999); //Generating a psudorandom ID, will likely change to ULID
 
@@ -87,7 +88,7 @@ namespace TylerCode.SoundSystem
             //Handle Subtitles
             if (subtitlesEnabled)
             {
-                OnSubtitlePlay?.Invoke(this, new SubtitleEventArgs(new SubtitleData("", playerSettings.closedCaption, false)));
+                OnSubtitlePlay?.Invoke(this, new SubtitleEventArgs(new SubtitleData("", "TEST", false)));
             }
 
             //Handle Music
@@ -162,7 +163,7 @@ namespace TylerCode.SoundSystem
             }
         }
 
-        private void StartNewSong(SoundPlayerSettings soundPlayerSettings, int id)
+        private void StartNewSong(S4SoundPlayerSettings soundPlayerSettings, int id)
         {
             if (_sounds.ContainsKey(_currentSong))
             {
@@ -174,14 +175,13 @@ namespace TylerCode.SoundSystem
         }
     }
 
-
     public class SoundObject
     {
-        public SoundPlayerSettings playerSettings;
+        public S4SoundPlayerSettings playerSettings;
         public GameObject soundPlayerObject;
         public DateTime startTime;
 
-        public SoundObject(SoundPlayerSettings settings, GameObject obj)
+        public SoundObject(S4SoundPlayerSettings settings, GameObject obj)
         {
             playerSettings = settings;
             soundPlayerObject = obj;
@@ -203,48 +203,6 @@ namespace TylerCode.SoundSystem
                 yield return null;
             }
             yield break;
-        }
-    }
-
-    public class SubtitleEventArgs : EventArgs
-    {
-        public SubtitleData SubtitleData { get; set; }
-
-        public SubtitleEventArgs(SubtitleData subtitleData)
-        {
-            SubtitleData = subtitleData;
-        }
-    }
-
-    public class VolumeEventArgs : EventArgs
-    {
-        public VolumeData VolumeData { get; set; }
-
-        public VolumeEventArgs(VolumeData volumeData)
-        {
-            VolumeData = volumeData;
-        }
-    }
-
-    public class VolumeData
-    {
-        public float MusicVolume { get; set; }
-        public float SoundVolume { get; set; }
-    }
-
-    public class SubtitleData
-    {
-        public string Speaker;
-        public string Subtitle;
-        public bool IsDialog;
-        public bool SubsEnabled;
-        public bool CaptionsEnabled;
-
-        public SubtitleData(string speaker, string subtitle, bool isDialog)
-        {
-            Speaker = speaker;
-            Subtitle = subtitle;
-            IsDialog = isDialog;
         }
     }
 }

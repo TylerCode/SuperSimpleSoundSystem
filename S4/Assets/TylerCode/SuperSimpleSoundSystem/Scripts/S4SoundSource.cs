@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -16,7 +15,7 @@ namespace TylerCode.SoundSystem
         private string _soundToPlayOnAwake;
         [SerializeField]
         [Tooltip("List of sounds attached to this object, used to communicate with the sound manager")]
-        private List<SoundPlayerSettings> _sounds;
+        private List<S4SoundPlayerSettings> _sounds;
 
         private S4SoundManager _soundManager;
 
@@ -37,7 +36,7 @@ namespace TylerCode.SoundSystem
         /// <param name="overridePosition">Positional override (optional)</param>
         public void PlaySound(string name, Vector3? overridePosition = null)
         {
-            SoundPlayerSettings _soundPlayerSettings = _sounds.FirstOrDefault(sp => sp.soundName == name);
+            S4SoundPlayerSettings _soundPlayerSettings = _sounds.FirstOrDefault(sp => sp.soundName == name);
 
             if (overridePosition != null)
             {
